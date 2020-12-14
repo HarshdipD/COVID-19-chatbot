@@ -7,6 +7,7 @@
  symptoms of COVID - source: Google
 */
 symptom('fever').
+symptom('cough').
 symptom('dry cough').
 symptom('tiredness').
 symptom('aches').
@@ -77,9 +78,9 @@ run_bot :-
 display_menu :-
     writeln("\n\n"),
     writeln("What would you like to do? Type a number from this list: \n"),
-    writeln("1. Show COVID-19 Symptoms    2. Enter a symptom to check if you have COVID-19"),
-    writeln("3. Quarantine advice         4. Should I get tested?"),
-    writeln("5. Vaccine info              6. Exit\n"),
+    writeln("1. Quarantine advice      2. Enter a symptom to check if you have COVID-19"),
+    writeln("3. Should I get tested?   4. Vaccine info"),
+    writeln("5. Exit\n"),
     catch(
         (
             read(Menu_input),
@@ -88,7 +89,7 @@ display_menu :-
                 -> (
                 switch(Menu_input, [
                         1 : (
-                            show_covid_symptoms,
+                            covid_quarantine_advice,
                             display_menu
                         ),
                         2 : (
@@ -96,18 +97,14 @@ display_menu :-
                             display_menu
                         ),
                         3 : (
-                            covid_quarantine_advice,
-                            display_menu
-                        ),
-                        4 : (
                             covid_testing_advice,
                             display_menu
                         ),
-                        5 : (
+                        4 : (
                             covid_vaccine_info,
                             display_menu
                         ),
-                        6 : (
+                        5 : (
                             sleep(0.2),
                             writeln("Exiting... Don\'t forget to practice safe distancing and wear a mask!!!"),
                             sleep(0.5)
@@ -129,9 +126,6 @@ display_menu :-
             display_menu
         )
     ).
-
-show_covid_symptoms :- 
-    writeln("cant you just google it wtf").
 
 /*
 * Lets a user type out symptoms and indicate whether they match known COVID-19 symptoms
@@ -176,16 +170,20 @@ check_if_covid :-
                 )
             )
         ),
-        covid_quarantine_advice,
+        _,
         (
             writeln("Wait... I think you\'re trying to type something with space in it."),
             sleep(1),
             writeln("Can you try to type out your symptom with single quotes (\') around it? Example: \'running nose\'"),
+            writeln("If it\'s not a space issue, then I might not have understood your input."),
             sleep(1),
             check_if_covid
         )
     ).
 
+/*
+* Covid Quarentine advice
+*/
 covid_quarantine_advice :-
     writeln("The Government of Canada has put out detailed information regarding COVID-19."),
     writeln("Are you recently arriving in Canada from abroad?"),
@@ -281,6 +279,7 @@ covid_testing_advice :-
         )
     ).
 
+/* Vaccine info */
 covid_vaccine_info :-
     writeln("Different organizations are actively working on creating and testing new vaccines for COVID-19. There is no universally accepted vaccine as of yet."),
     sleep(1).
