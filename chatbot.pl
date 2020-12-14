@@ -1,6 +1,7 @@
 /**************************************************
                   COVID-19 Chatbot
         Created by Harshdip Singh for COMP4400
+        Read README.md for more information
 **************************************************/
 
 /*
@@ -182,7 +183,7 @@ check_if_covid :-
     ).
 
 /*
-* Covid Quarentine advice
+* Covid Quarantine advice
 */
 covid_quarantine_advice :-
     writeln("The Government of Canada has put out detailed information regarding COVID-19."),
@@ -238,7 +239,7 @@ covid_testing_advice :-
                     positive_response(Symptom)
                     -> (
                         sleep(0.3),
-                        writeln("\nYou should get tested as soon as possible. Make sure to practice safe distancing and quarentine immediately on any doubt!"),
+                        writeln("\nYou should get tested as soon as possible. Make sure to practice safe distancing and quarantine immediately on any doubt!"),
                         sleep(1),
                         writeln("Returning to main menu..."),
                         sleep(1)
@@ -257,7 +258,7 @@ covid_testing_advice :-
                             ; (
                                 writeln("Looks like there isn\'t a immediate need to get tested."),
                                 sleep(1),
-                                writeln("However, if you still think you should get tested, please do it. Make sure to practice safe distancing and quarentine immediately on any doubt!"),
+                                writeln("However, if you still think you should get tested, please do it. Make sure to practice safe distancing and quarantine immediately on any doubt!"),
                                 writeln("Returning to main menu..."),
                                 sleep(1)
                             )
